@@ -1,4 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap')
+@font-face
+   font-family: 'Trebuchet MS'
+   src: url('../fonts/TrebuchetMS-Bold.eot')
+   src: local('Trebuchet MS Bold'), local('TrebuchetMS-Bold'), url('../fonts/TrebuchetMS-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/TrebuchetMS-Bold.woff') format('woff'), url('../fonts/TrebuchetMS-Bold.ttf') format('truetype')
+   font-weight: bold
+   font-style: normal
+
+@font-face
+   font-family: 'Trebuchet MS'
+   src: url('../fonts/TrebuchetMS.eot')
+   src: local('Trebuchet MS'), local('TrebuchetMS'), url('../fonts/TrebuchetMS.eot?#iefix') format('embedded-opentype'), url('../fonts/TrebuchetMS.woff') format('woff'), url('../fonts/TrebuchetMS.ttf') format('truetype')
+   font-weight: normal
+   font-style: normal
 @import "_normalize"
 
 *
@@ -12,3 +25,33 @@
    width: 100%
    height: 100%
    background-image: url(https://raw.githubusercontent.com/Mangecu/FunBox-Task/gh-pages/assets/img/bg.png)
+   padding-top: 36px
+   .content
+      display: flex
+      flex-direction: column
+      h1
+         font-size: 36px
+         line-height: 44px
+         color: #ffffff
+         text-shadow: 0 1px 1px #000000
+         text-align: center
+      .items
+         display: flex
+         flex-direction: row
+         justify-content: space-between
+         margin-top: 24px
+         .item
+            height: 480px
+            width: 320px
+            background-image: url(https://raw.githubusercontent.com/Mangecu/FunBox-Task/gh-pages/assets/img/cat.jpg)
+            background-repeat: no-repeat
+            background-position: 50% 100%
+            background-color: #f2f2f2
+            .item__preTitle
+               font-family: 'Trebuchet MS'
+               font-size: 16px
+               line-height: 1.2
+               font-weight: 400
+               color: #666666
+
+

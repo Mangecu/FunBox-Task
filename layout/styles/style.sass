@@ -21,8 +21,8 @@
    margin: 0 auto
 
 .main
-   width: 100%
-   height: 100%
+   min-width: 100%
+   min-height: 100%
    background-image: url(https://raw.githubusercontent.com/Mangecu/FunBox-Task/gh-pages/assets/img/bg.png)
    padding-top: 36px
    .content
@@ -87,19 +87,32 @@
                   font-size: 14px
                   line-height: 16px
                   color: #666666
-               .item__weight
+               .item__weight,
+               .weight__count
                   font-family: 'Trebuchet MS'
-                  font-weight: 700
+                  font-weight: 400
+               .item__weight
                   display: flex
                   flex-direction: column
+                  align-items: center
+                  justify-content: center
                   height: 80px
                   width: 80px
                   position: absolute
-                  top: 75.44%
+                  top: 80.5%
                   left: 70%
                   background-color: #2EA8E6
                   color: #FFFFFF
+                  font-size: 21px
+                  border-radius: 50%
+               .weight__count
                   font-size: 42px
+            .selected
+               border: 4px solid #D91667
+            .disable
+               background-color: #f2f2f2
+               background-blend-mode: soft-light
+               z-index: 2
             .item__massage
                margin-top: 14px
             .item__massage,

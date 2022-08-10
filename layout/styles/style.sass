@@ -11,11 +11,9 @@
    src: local('Trebuchet MS'), local('TrebuchetMS'), url('../fonts/TrebuchetMS.eot?#iefix') format('embedded-opentype'), url('../fonts/TrebuchetMS.woff') format('woff'), url('../fonts/TrebuchetMS.ttf') format('truetype')
    font-weight: normal
    font-style: normal
+
 @import "_normalize"
 @import "_media"
-@import "_default"
-@import "_default-hover"
-@import "_select"
 
 *
    font-family: 'Exo 2', sans-serif
@@ -29,6 +27,7 @@
    min-width: 100%
    min-height: 100%
    background-image: url(https://raw.githubusercontent.com/Mangecu/FunBox-Task/gh-pages/assets/img/bg.png)
+   padding-bottom: 50px
    .content
       display: grid
       grid-template-rows: 104px minmax(509px, auto)
@@ -53,6 +52,13 @@
             clip-path: polygon(45.45px 0, 0 45.45px, 0 480px, 320px 480px, 320px 0)
             border-radius: 12px
             cursor: pointer
+            background-color: #1698D9
+            &:hover,
+            &:hover .item__weight
+               background-color: #2EA8E6 !important
+            &:hover + .item__massage > .item__btn
+               color: #2EA8E6 !important
+               border-bottom: 1px dashed #2EA8E6 !important
             .item__info
                background: linear-gradient(135deg, transparent 30.5px, #f2f2f2 0)
                border-radius: 8px
@@ -108,7 +114,7 @@
                   position: absolute
                   top: 80.5%
                   left: 70%
-
+                  background-color: #1698D9
                   color: #FFFFFF
                   font-size: 21px
                   border-radius: 50%
@@ -124,4 +130,6 @@
             font-weight: 700
             .item__btn
                background-color: transparent
+               color: #1698D9
+               border-bottom: 1px dashed #1698D9
 

@@ -47,6 +47,8 @@ class ProductList {
       this.goods = items
       this.render()
       this.disable()
+      this.hover()
+      this.select()
    }
    render() {
       for (let item of this.goods) {
@@ -54,7 +56,45 @@ class ProductList {
          document.querySelector('.items').insertAdjacentHTML("beforeend", prod.render());
       }
    }
+   hover() {
+      let covers = document.querySelectorAll('.item')
+      covers.forEach(item => {
+         item.addEventListener('mouseover', el => {
+            let cover = el.currentTarget
+            if (cover.dataset.condition === "default") {
+               cover.querySelector('.item__wrap').classList.toggle('item__wrap-hover')
+               cover.querySelector('.item__weight').classList.toggle('item__weight-hover')
+               cover.querySelector('.item__btn').classList.toggle('item__btn-hover')
+            } else if (cover.dataset.condition === "select") {
 
+            }
+         })
+      })
+   }
+   select() {
+      let covers = document.querySelectorAll('.item')
+      covers.forEach(item => {
+         item.addEventListener('click', el => {
+            let cover = el.currentTarget
+            cover.querySelector('.item__wrap').classList.toggle('item__wrap-select', )
+            cover.querySelector('.item__weight').classList.toggle('item__weight-select')
+            if (cover.dataset.condition === "default") {
+               cover.dataset.condition = "select"
+               this.changeContentSelect(cover)
+            } else if (cover.dataset.condition === "select") {
+               cover.dataset.condition = "default"
+               cover.querySelector('.item__massage').innerHTML = `Чего сидишь? Порадуй котэ, <button class="item__btn" id="${cover.getAttribute('id')}">купи.`
+            }
+         })
+      })
+   }
+   changeContentSelect(item) {
+      for (let cover of this.goods) {
+         if (cover.id.toString() === item.getAttribute('id')) {
+            item.querySelector('.item__massage').textContent = `${cover.itemMessageSelected}`
+         }
+      }
+   }
    disable() {
 
    }

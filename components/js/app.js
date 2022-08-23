@@ -56,45 +56,66 @@ class ProductList {
          document.querySelector('.items').insertAdjacentHTML("beforeend", prod.render());
       }
    }
-   hover() {
-      let covers = document.querySelectorAll('.item')
-      covers.forEach(item => {
-         item.addEventListener('mouseover', el => {
-            let cover = el.currentTarget
-            if (cover.dataset.condition === "default") {
-               cover.querySelector('.item__wrap').classList.toggle('item__wrap-hover')
-               cover.querySelector('.item__weight').classList.toggle('item__weight-hover')
-               cover.querySelector('.item__btn').classList.toggle('item__btn-hover')
-            } else if (cover.dataset.condition === "select") {
 
-            }
-         })
-      })
-   }
    select() {
       let covers = document.querySelectorAll('.item')
       covers.forEach(item => {
-         item.addEventListener('click', el => {
-            let cover = el.currentTarget
-            cover.querySelector('.item__wrap').classList.toggle('item__wrap-select', )
-            cover.querySelector('.item__weight').classList.toggle('item__weight-select')
-            if (cover.dataset.condition === "default") {
-               cover.dataset.condition = "select"
-               this.changeContentSelect(cover)
-            } else if (cover.dataset.condition === "select") {
-               cover.dataset.condition = "default"
-               cover.querySelector('.item__massage').innerHTML = `Чего сидишь? Порадуй котэ, <button class="item__btn" id="${cover.getAttribute('id')}">купи.`
+         item.querySelector('.item__info').addEventListener('click', () => {
+            this._selectChangeContent(item, item.dataset.condition)
+         })
+         item.querySelector('.item__btn').addEventListener('click', () => {
+            this._selectChangeContent(item, item.dataset.condition)
+         })
+      })
+   }
+   _selectChangeContent(item, condition) {
+      item.querySelector('.item__wrap').classList.toggle('item__wrap-select')
+      item.querySelector('.item__weight').classList.toggle('item__weight-select')
+      item.querySelector('.item__massage').classList.toggle('hidden')
+      item.querySelector('.item__massage-action').classList.toggle('hidden')
+      if (condition === "default") {
+         item.dataset.condition = "select"
+         for (let cover of this.goods) {
+            if (cover.id.toString() === item.getAttribute('id')) {
+               item.querySelector('.item__massage-action').textContent = `${cover.itemMessageSelected}`
+               item.querySelector('.item__preTitle').textContent = `${cover.preTitleSelectedHover}`
+               item.querySelector('.item__preTitle').classList.add('item__preTitle-hover')
+            }
+         }
+      } else if (condition === "select") {
+         item.dataset.condition = "default"
+         item.querySelector('.item__massage-action').textContent = ''
+         for (let cover of this.goods) {
+            if (cover.id.toString() === item.getAttribute('id')) {
+               item.querySelector('.item__preTitle').textContent = `${cover.preTitle}`
+            }
+         }
+      }
+   }
+   hover() {
+      let covers = document.querySelectorAll('.item')
+      covers.forEach(item => {
+         item.querySelector('.item__wrap').addEventListener('mouseenter', () => {
+            if (item.dataset.condition === "select") {
+               for (let cover of this.goods) {
+                  if (cover.id.toString() === item.getAttribute('id')) {
+                     item.querySelector('.item__preTitle').textContent = `${cover.preTitleSelectedHover}`
+                  }
+               }
+            }
+         })
+         item.querySelector('.item__wrap').addEventListener('mouseleave', () => {
+            if (item.dataset.condition === "select") {
+               for (let cover of this.goods) {
+                  if (cover.id.toString() === item.getAttribute('id')) {
+                     item.querySelector('.item__preTitle').textContent = `${cover.preTitle}`
+                  }
+               }
             }
          })
       })
    }
-   changeContentSelect(item) {
-      for (let cover of this.goods) {
-         if (cover.id.toString() === item.getAttribute('id')) {
-            item.querySelector('.item__massage').textContent = `${cover.itemMessageSelected}`
-         }
-      }
-   }
+
    disable() {
 
    }
@@ -127,6 +148,7 @@ class ProductItem {
                </div>
             </div>
             <p class="item__massage">Чего сидишь? Порадуй котэ, <button class="item__btn" id="${this.id}">купи.</button></p>
+            <p class="item__massage-action hidden"></p>
          </div>`
    }
 }
